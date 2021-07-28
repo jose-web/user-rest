@@ -38,4 +38,22 @@ public class UserService {
 		return userRepository.findById(id).get();
 	}
 
+	public boolean edit(Long id, String email, String pass, String username, String birthday) {
+		try {
+			User user = userRepository.findById(id).get();
+			user.setEmail(email);
+			user.setPass(pass);
+			user.setUsername(username);
+
+			LocalDate date = LocalDate.parse(birthday);
+
+			user.setBirthday(date);
+
+			userRepository.save(user);
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+	}
+
 }

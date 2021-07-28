@@ -27,4 +27,9 @@ public class UserController {
 	public User findById(Long id) {
 		return userService.findById(id);
 	}
+
+	@PostMapping("/edit")
+	public boolean edit(Long id, String email, String pass, String username, String birthday) {
+		return userService.edit(id, email, pass, username, birthday);
+	}
 }
