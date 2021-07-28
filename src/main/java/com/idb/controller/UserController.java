@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.idb.entity.User;
 import com.idb.service.UserService;
 
 @RestController
@@ -20,5 +21,10 @@ public class UserController {
 	@PostMapping("/delete")
 	public boolean create(Long id) {
 		return userService.delete(id);
+	}
+
+	@PostMapping("/findById")
+	public User findById(Long id) {
+		return userService.findById(id);
 	}
 }
