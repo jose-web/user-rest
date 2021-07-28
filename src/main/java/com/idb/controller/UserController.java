@@ -16,4 +16,9 @@ public class UserController {
 	public boolean create(String email, String pass, String username, String birthday) {
 		return userService.create(email, pass, username, birthday);
 	}
+
+	@PostMapping("/delete")
+	public boolean create(Long id) {
+		return userService.delete(id);
+	}
 }
