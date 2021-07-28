@@ -24,4 +24,12 @@ public class User {
 	private String pass;
 	private LocalDate birthday;
 
+	public User(String email, String pass, String username, LocalDate birthday) {
+		super();
+		this.username = username;
+		this.email = email;
+		this.pass = pass;
+		this.birthday = birthday;
+	}
+
 }
