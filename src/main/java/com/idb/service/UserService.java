@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.google.gson.Gson;
 import com.idb.entity.User;
 import com.idb.repository.UserRepository;
 
@@ -34,8 +35,15 @@ public class UserService {
 		}
 	}
 
-	public User findById(Long id) {
-		return userRepository.findById(id).get();
+	public String findById(Long id) {
+		Gson jsonUsers = new Gson();
+		return jsonUsers.toJson(userRepository.findById(id));
+	}
+
+	public String findAll() {
+
+		Gson jsonUsers = new Gson();
+		return jsonUsers.toJson(userRepository.findAll());
 	}
 
 	public boolean edit(Long id, String email, String pass, String username, String birthday) {

@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.idb.entity.User;
 import com.idb.service.UserService;
 
 @RestController
@@ -27,8 +26,13 @@ public class UserController {
 	}
 
 	@GetMapping("/findById")
-	public User findById(Long id) {
+	public String findById(Long id) {
 		return userService.findById(id);
+	}
+
+	@GetMapping("/findAll")
+	public String findAll() {
+		return userService.findAll();
 	}
 
 	@PutMapping("/edit")
