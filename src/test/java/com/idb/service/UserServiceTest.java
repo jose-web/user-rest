@@ -1,6 +1,7 @@
 package com.idb.service;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.time.LocalDate;
@@ -90,4 +91,37 @@ public class UserServiceTest {
 		boolean response = userService.delete(100L);
 		assertTrue(response);
 	}
+
+/////////////////////// FAIL TEST ///////////////////////
+
+	@Test
+	@DisplayName("Create user fail")
+	public void createFail() {
+		boolean response = userService.create("jose@jose.com", "1234", "jose", "aaaaaa1996-12-13");
+		assertFalse(response);
+	}
+
+	@Test
+	@DisplayName("Edit user fail")
+	public void editFail() {
+
+		User user = new User();
+		Mockito.when(userRepository.findById(1L)).thenReturn(Optional.of(user));
+
+		boolean response = userService.edit(1L, "jose@jose.com", "1234", "jose", "aaaaaa1996-12-13");
+		assertFalse(response);
+	}
+
+	@Test
+	@DisplayName("delete user fail")
+	public void deleteFail() {
+
+		Mockito.doThrow(new RuntimeException()).when(userRepository).deleteById(2L);
+		userService.delete(2L);
+
+		boolean response = userService.delete(2L);
+
+		assertFalse(response);
+	}
+
 }
