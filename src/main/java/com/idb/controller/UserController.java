@@ -1,7 +1,10 @@
 package com.idb.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.idb.entity.User;
@@ -18,18 +21,19 @@ public class UserController {
 		return userService.create(email, pass, username, birthday);
 	}
 
-	@PostMapping("/delete")
+	@DeleteMapping("/delete")
 	public boolean create(Long id) {
 		return userService.delete(id);
 	}
 
-	@PostMapping("/findById")
+	@GetMapping("/findById")
 	public User findById(Long id) {
 		return userService.findById(id);
 	}
 
-	@PostMapping("/edit")
+	@PutMapping("/edit")
 	public boolean edit(Long id, String email, String pass, String username, String birthday) {
 		return userService.edit(id, email, pass, username, birthday);
 	}
+
 }
